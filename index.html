@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang='en'>
+   <!-- https://www.w3schools.com/js/js_graphics_chartjs.asp 
+       https://www.w3schools.com/js/js_graphics_google_chart.asp
+    -->
+  <head>
+    <title>Charts Test</title>
+    <meta charset='utf-8'>
+    <meta name='description' content='chart js library test Graphics'>
+    <meta name='keywords' content=''>
+    <meta name='author' content='Odisseo'>
+    <meta name='robots' content='all'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8B0000">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">    
+ <style>
+ body{
+ color:#000;
+ background-color:#fff;text-align:center;
+ }
+ canvas, div, .lastdiv{
+ width:100%;max-width:1200px;margin:30px auto 0;
+height:auto;
+ }
+
+ h1{
+ margin:150px auto;
+ width:100%;
+ max-width:600px; 
+ }
+ .chartjs-size-monitor, .chartjs-size-monitor-expand, .chartjs-size-monitor-shrink {
+    display: none;
+}
+
+ </style>
+    
+  </head>
+  <body>
+  <h1>JAVASCRIPT LAZY LOAD DINAMICALLY EVENT SCROLL</h1>
+  <p>CHART 1</p>
+  <canvas id="myChart" ></canvas>
+  <p>CHART 2</p>
+  <canvas id="myChart2" ></canvas>
+  <p>CHART 3</p>
+  <canvas id="myChart3" ></canvas>
+  <p>CHART 4</p>
+  <canvas id="myChart4" ></canvas>
+  <p>CHART 5</p>
+  <canvas id="myChart5" ></canvas>
+  <p>CHART 6</p>
+  <canvas id="myChart6" ></canvas>
+  <p>CHART 7</p>
+  <canvas id="myChart7" ></canvas>
+  <p>CHART 8</p>
+  <canvas id="myChart8" ></canvas>
+  <script>
+     
+
+function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    const height = el.offsetHeight - 50; 
+    return (rect.bottom <= (window.innerHeight + height  || document.documentElement.clientHeight + height ) );
+}
+function d(i){
+    /*  first script*/
+    var newscript = document.createElement('script');
+    newscript.type = 'text/javascript';
+    newscript.async = true;
+    newscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js';
+    
+      /*  second script*/
+    var secondscript = document.createElement('script');
+    secondscript.type = 'text/javascript';
+    secondscript.async = true;
+    secondscript.src = './js/myscript.js';
+    
+    /* callback js  second script after the first(newscript) */
+    const p = document.getElementsByTagName('body')[0];
+    newscript.onload = () => {
+      p.appendChild(secondscript)
+    }
+    
+
+document.addEventListener('scroll', function () {   
+const q = document.getElementById(i);
+const r = document.getElementsByTagName('head')[0]; 
+   
+        if (isInViewport(q)){
+          r.appendChild(newscript)} 
+          else if (r.appendChild(newscript)&& !isInViewport(q)){
+          r.removeChild(newscript)
+          }else{
+          return false
+          }
+ 
+},{passive: true, capture: true}); 
+
+} 
+d("myChart");
+
+
+
+</script>
+
+<!-- <script>  
+    var newscript = document.createElement('script');
+    newscript.type = 'text/javascript';
+    newscript.async = true;
+    newscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js';
+    
+      /*  second script*/
+    var secondscript = document.createElement('script');
+    secondscript.type = 'text/javascript';
+    secondscript.async = true;
+    secondscript.src = './js/myscript.js';
+
+    window.onload = () => {
+    const myTimeout = setTimeout(function () {
+      (document.getElementsByTagName('body')[0]).appendChild(newscript);
+      clearTimeout(myTimeout);
+    }, 3);
+}
+
+    newscript.onload = () => {
+      (document.getElementsByTagName('body')[0]).appendChild(secondscript)
+}
+/*window.addEventListener('load', function () {   
+     const myTimeout = setTimeout(function () {
+      (document.getElementsByTagName('body')[0]).appendChild(newscript);
+      clearTimeout(myTimeout);
+    }, 10);
+ 
+},{passive: true, capture: true}); */
+
+
+</script> -->
+
+
+  
+
+ 
+  
+
+  </body>
+</html>

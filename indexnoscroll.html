@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang='it'>
+   <!-- https://www.w3schools.com/js/js_graphics_chartjs.asp 
+       https://www.w3schools.com/js/js_graphics_google_chart.asp
+    -->
+  <head>
+    <title>Charts Test</title>
+    <meta charset='utf-8'>
+    <meta name='description' content='chart js library test Graphics'>
+    <meta name='keywords' content=''>
+    <meta name='author' content='Odisseo'>
+    <meta name='robots' content='all'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8B0000">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">   
+ <style>
+ body{
+ color:#000;
+ background-color:#fff;text-align:center;
+ visibility: hidden;}
+ canvas, div, .lastdiv{
+ width:100%;max-width:1200px;margin:30px auto 0;
+height:auto;
+ }
+
+ h1{
+ margin:150px auto;
+ width:100%;
+ max-width:600px; 
+ }
+ .chartjs-size-monitor, .chartjs-size-monitor-expand, .chartjs-size-monitor-shrink {
+    display: none;
+}
+
+ </style>
+    
+  </head>
+  <body>
+  <h1>JAVASCRIPT LAZY LOAD DINAMICALLY EVENT ONLOAD</h1>
+  <p>CHART 1</p>
+  <canvas id="myChart" ></canvas>
+  <p>CHART 2</p>
+  <canvas id="myChart2" ></canvas>
+  <p>CHART 3</p>
+  <canvas id="myChart3" ></canvas>
+  <p>CHART 4</p>
+  <canvas id="myChart4" ></canvas>
+  <p>CHART 5</p>
+  <canvas id="myChart5" ></canvas>
+  <p>CHART 6</p>
+  <canvas id="myChart6" ></canvas>
+  <p>CHART 7</p>
+  <canvas id="myChart7" ></canvas>
+  <p>CHART 8</p>
+  <canvas id="myChart8" ></canvas>
+
+
+<script>  
+    var newscript = document.createElement('script');
+    newscript.type = 'text/javascript';
+    newscript.async = true;
+    newscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js';
+    
+      /*  second script*/
+    var secondscript = document.createElement('script');
+    secondscript.type = 'text/javascript';
+    secondscript.async = true;
+    secondscript.src = './js/myscript.js';
+/*
+    window.onload = () => {
+    const myTimeout = setTimeout(function () {
+      (document.getElementsByTagName('body')[0]).appendChild(newscript);
+      clearTimeout(myTimeout);
+    }, 3);
+}*/
+const k = (document.getElementsByTagName('body')[0]);
+window.addEventListener('load', function () {   
+     const myTimeout = setTimeout(function () {
+      k.appendChild(newscript);
+      clearTimeout(myTimeout);
+    }, 10);
+ 
+},{passive: true, capture: true});
+
+    newscript.onload = () => {
+      k.appendChild(secondscript);
+      const Timeout = setTimeout(function () {
+        k.style.visibility = "visible";
+      clearTimeout(Timeout);
+    }, 10);
+
+      
+
+}
+/*window.onload = () => {(document.getElementsByTagName('body')[0]).style.visibility = "visible"}*/
+/*window.addEventListener('load', function () {   
+     const myTimeout = setTimeout(function () {
+      (document.getElementsByTagName('body')[0]).appendChild(newscript);
+      clearTimeout(myTimeout);
+    }, 10);
+ 
+},{passive: true, capture: true}); */
+
+
+</script>
+
+
+  
+
+ 
+  
+
+  </body>
+</html>
